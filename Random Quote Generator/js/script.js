@@ -49,36 +49,39 @@ var quotes = [{
 ***/
   const getRandomQuote = (array)=>{
   var quoteBook = Math.floor(Math.random() * (quotes.length));
-  for (var i = 0; i < array.length; i++) {
-      var randomQuote = array[quoteBook];
-  }
-  return randomQuote;
+  // var randomQuote +=
+  // for (var i = 0; i < array.length; i++) {
+  //     var randomQuote = array[quoteBook];
+  // }
+  return quotes[quoteBook];
+  
 
 }
 
 
 /***
  * `printQuote` function
-***/
+***/ 
 
-const printQuote = ()=> {
-  var message = "";     // Initializing the message variable with empty string
-  var result = getRandomQuote(quotes);
-  message = "<p class='quote'>" + result.quote + "</p>";
-  message += "<p class='source'>" + result.source;
-  message += "<span class='citation'>" + result.citation + "</span>";
-  message += "<span class='year'>" + result.year + "</span>"
-  message += "</p>";
+function printQuote() {
+var callRandomQuote = getRandomQuote();
+var quotesQuote = `<p class = "quote">${callRandomQuote.quote}</p><p class = "source">${callRandomQuote.source}`
 
-  document.getElementById('quote-box').innerHTML = message;
+if(callRandomQuote.citation){
+  quotesQuote += `<span class="citation"> ${callRandomQuote.citation} </span>`
+  
+  
 }
+else if(callRandomQuote.year){
+  quotesQuote += `<span class="year"> ${callRandomQuote.year} </span>`
 
-printQuote();
+};
+quotesQuote += `</p>`
 
+return document.getElementById('quote-box').innerHTML = quotesQuote; 
+}
 
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
-
-document.getElementById('load-quote').addEventListener("click", printQuote, false);
